@@ -13,11 +13,12 @@ import (
 	"strings"
 
 	"github.com/cilium/tetragon/api/v1/tetragon"
+	"github.com/cilium/tetragon/pkg/k8s/apis/cilium.io/v1alpha1"
+
 	"github.com/cilium/tetragon/pkg/api/processapi"
 	"github.com/cilium/tetragon/pkg/config"
 	gt "github.com/cilium/tetragon/pkg/generictypes"
 	"github.com/cilium/tetragon/pkg/idtable"
-	"github.com/cilium/tetragon/pkg/k8s/apis/cilium.io/v1alpha1"
 	"github.com/cilium/tetragon/pkg/kernels"
 	"github.com/cilium/tetragon/pkg/mbset"
 	"github.com/cilium/tetragon/pkg/reader/namespace"
@@ -743,7 +744,7 @@ func writePostfix(k *KernelSelectorState, values []string, ty uint32, selector s
 }
 
 func writePostfixBinaries(k *KernelSelectorState, values []string) (uint32, error) {
-	return writePostfix(k, values, gt.GenericCharBuffer, "MatchBinaries")
+	return writePostfix(k, values, gt.GenericStringType, "MatchBinaries")
 }
 
 func writePostfixStrings(k *KernelSelectorState, values []string, ty uint32) error {
